@@ -8,5 +8,17 @@
   "dependencies": {
     "express": "latest",
     "express-plates": "latest"
+  },
+  "description": "A thing about a thing",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bcomnes/bretzel.git"
+  },
+  "author": "Bret Comnes",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/bcomnes/bretzel/issues"
   }
 }
