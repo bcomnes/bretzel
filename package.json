@@ -1,0 +1,27 @@
+{
+  "name": "bretzel",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.4.7",
+    "jade": "*",
+    "js-yaml": "~3.0.1"
+  },
+  "devDependencies": {
+    "replify": "~1.1.4"
+  },
+  "description": "bretzel =======",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bcomnes/bretzel.git"
+  },
+  "author": "Bret Comnes",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/bcomnes/bretzel/issues"
+  }
+}

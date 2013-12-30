@@ -1,0 +1,24 @@
+# Config
+url: 'bret.io' # ie bret.io etc
+paginate: 10
+#port: 4000
+future: true
+
+# Site Info
+author: Bret Comnes
+description: 'A Personal Website and Blog'
+location: 'Portland, OR'
+permalink_marker: '&#916;'  # Not used yet
+linklog: '&#8620;'  # Not used yet
+
+# Analytics
+googleWebmaster: '-gd5D4qtAADYPG5Iwbl7Z1265Dt6fzf1H5BQItIbsps'
+bingWebmaster: '8C03EAC159FD742794668D7663E86AED'
+
+# Indieweb stuff
+webmention: 'http://pingback.me/bcomnes/webmention'
+indieauth: 'https://indieauth.com'
+
+# On the way out
+pingback: 'http://pingback.me/bcomnes/xmlrpc'
+openIDServer: 'https://indieauth.com/openid'

@@ -1,0 +1,22 @@
+// includes/delegates.jade
+
+meta(charset='utf8')
+if googleWebmaster
+  // Google webmaster tools
+  meta(name='google-site-verification' content='googleWebmaster')
+if bingWebmaster
+  // Bing webmaster tools
+  meta(name='msvalidate.01' content='bingWebmaster')
+if webmention
+  // Webmentions
+  link(rel='webmention' href=webmention)
+if indieauth
+  // Indieauth
+  link(rel='indieauth' href=indieauth)
+if pingback
+  // Pingbacks
+  link(rel='pingback' href=pingback)
+if openIDServer
+  // OpenID
+  link(rel='openid.server' href=openIDServer)
+  link(rel='openid.delegate' href='http://' + url)
