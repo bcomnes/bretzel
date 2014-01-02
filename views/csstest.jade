@@ -1,29 +1,16 @@
 extends layout
 
 block content
-  .wrapper
-    header
-      h1.logo: a(href='') Nav
-      a.to_nav(href='#primary_nav') Menu
-    article
-      h2 Blue. No yel&hellip;
-      p Shut up! Will you shut up?! But you are dressed as one&hellip; Camelot! You don't vote for kings.
-    article
-      h2 We want a shrubbery!!
-      p Look, my liege! Shut up! But you are dressed as one&hellip;
-      ul
-        li The nose?
-        li Shh! Knights, I bid you welcome to your new home. Let us ride to Camelot!
-        li Look, my liege!
-    article
-      h2 Help, help, I'm being repressed!
-      p Why? Listen. Strange women lying in ponds distributing swords is no basis for a system of government. Supreme executive power derives from a mandate from the masses, not from some farcical aquatic ceremony. Be quiet! A newt?
-    nav#primary_nav
-      ul
-        each val in ['Portfolio', 'About Me', 'Nonsense', 'Services', 'Contact']
-          li: a(href='')= val
-        li: a(href='#home') Top
-    footer
-      p Copyright &copy;2012 Ian Yates <a href="http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/a-simple-responsive-mobile-first-navigation/">Webdesigntuts+</a>
-  // end wrapper
-
+  article
+    h2: a(href='') Blue. No yel&hellip;
+    p Shut up! Will you shut up?! But you are dressed as one&hellip; Camelot! You don't vote for kings.
+  article
+    h2 We want a shrubbery!!
+    p Look, my liege! Shut up! But you are dressed as one&hellip;
+    ul
+      li The nose?
+      li Shh! Knights, I bid you welcome to your new home. Let us ride to Camelot!
+      li Look, my liege!
+  article
+    h2 Help, help, I'm being repressed!
+    p Why? Listen. Strange women lying in ponds distributing swords is no basis for a system of government. Supreme executive power derives from a mandate from the masses, not from some farcical aquatic ceremony. Be quiet! A newt?

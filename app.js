@@ -34,12 +34,14 @@ if ('development' == app.get('env')) {
 // production only
 app.configure('production', function(){});
 
-// Site Configuration
+// Site Configuration and variables
 // Accessed via app.locals
+// Used mostly with templates
 fs.readFile(configPath, 'utf8', function (err, data) {
   if (err) throw (err);
   app.locals(yaml.safeLoad(data));
 });
+app.locals.moment = require('moment');
 
 // Routes
 app.get('/', routes.index);

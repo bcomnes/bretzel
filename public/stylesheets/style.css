@@ -122,7 +122,7 @@ h1.logo a {
   font-size: 20px;
   line-height: 22px;
   float: left;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.1em;
 }
 
 a.to_nav {
@@ -197,7 +197,7 @@ footer {
         display: none;
       }
       
-      .wrapper {
+      body {
         position: relative;
         width: 768px;
         margin: auto;
