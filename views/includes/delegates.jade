@@ -1,22 +1,19 @@
-// includes/delegates.jade
-
-meta(charset='utf8')
-if googleWebmaster
+if site.googleWebmaster
   // Google webmaster tools
-  meta(name='google-site-verification' content='googleWebmaster')
-if bingWebmaster
+  meta(name='google-site-verification' content=site.googleWebmaster)
+if site.bingWebmaster
   // Bing webmaster tools
-  meta(name='msvalidate.01' content='bingWebmaster')
-if webmention
+  meta(name='msvalidate.01' content=site.bingWebmaster)
+if site.webmention
   // Webmentions
-  link(rel='webmention' href=webmention)
-if indieauth
-  // Indieauth
-  link(rel='indieauth' href=indieauth)
-if pingback
+  link(rel='webmention' href=site.webmention)
+if site.indieauth
+  // Indieauth Delega
+  link(rel='indieauth' href=site.indieauth)
+if site.pingback
   // Pingbacks
-  link(rel='pingback' href=pingback)
-if openIDServer
+  link(rel='pingback' href=site.pingback)
+if site.openIDServer
   // OpenID
-  link(rel='openid.server' href=openIDServer)
-  link(rel='openid.delegate' href='http://' + url)
+  link(rel='openid.server' href=site.openIDServer)
+  link(rel='openid.delegate' href='http://' + site.url)
