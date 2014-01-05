@@ -1,8 +1,8 @@
 extends layout
 
-block content
-  h1= title
-  p Welcome to #{title}
 
-block footerstuffs
-  h2= author
+block content
+  article
+    h2: a(href='') #{attributes.title} 
+    :markdown
+        # body

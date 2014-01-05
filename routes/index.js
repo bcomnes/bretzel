@@ -1,17 +1,45 @@
 var fs = require('fs');
 var fm = require('front-matter');
-var path = require('path');
+var marked = require('marked');
+var async = require('async');
+
 /*
  * GET home page.
  */
 
-exports.index = function(req, res){
-  fs.readFile('_posts/2013-03-13-latex-section-font-sizing.md', 'utf8', function (err, data) {
-    if (err) throw (err);
-    var content = fm(data);
-    console.log(content);
-    res.render('index', { title: 'Express' });
+function readPostData (callback) {
+  fs.readFile('_posts/2013-03-13-latex-section-font-sizing.md', utf8, function (err, data) {
+    if (err) return callback(err);
+    callback(null, data);
   });
+}
+
+function parseResults (textToParse, callback) {
+  var parsed = fm(textToParse);
+  callback(null, parsed);
+}
+
+function renderBody (frontMatter, callback) {
+  frontMatter.body = marked(frontMatter.body);
+  callback(null, frontMatter);
+}
+
+function renderTemplate (content, callback) {
+  res.render('index', content );
+  callback();
+}
+
+async.waterfall([
+  function()
+]);
+
+exports.index = function(req, res){
+  async.waterfall([
+    readPostData,
+    parseResults,
+    renderBody,
+    renderTemplate
+  ])
 };
 
 exports.csstest = function(req, res){
