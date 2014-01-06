@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
   // Use repl-client to connect to interactive repl
-  //rc /tmp/repl/brepl.sock
+  //  rc /tmp/repl/brepl.sock
   replify('brepl', app);
 }
 
@@ -52,3 +52,31 @@ app.get('/csstest', routes.csstest);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+function walk (dir, done) {
+  var results = [];
+  fs.readdir(dir, function(err, list) {
+    if (err) return done(err);
+    var pending = list.length;
+    if (!pending) return done(null, results);
+    list.forEach(function(file) {
+      file = dir + '/' + file;
+      fs.stat(file, function(err, stat) {
+        if (stat && stat.isDirectory()) {
+          walk(file, function(err, res) {
+            results = results.concat(res);
+            if (!--pending) done(null, results);
+          });
+        } else {
+          results.push(file);
+          if (!--pending) done(null, results);
+        }
+      });
+    });
+  });
+};
+
+walk('_posts', function (err, results) {
+  if (err) throw (err);
+  console.log(results);
+})
