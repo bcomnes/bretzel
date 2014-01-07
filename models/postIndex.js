@@ -1,5 +1,6 @@
 var fs = require('fs');
 var async = require('async');
+var fm = require('front-matter');
 
 function walk (dir, done) {
   var results = [];
@@ -28,7 +29,7 @@ function buildIndex (dir) {
   walk (dir, function (err, fileList) {
     if (err) throw (err);
     for (var index = 0; index < fileList, index++) {
-      
+      fs.readFile(fileList[index], 'utf8', function )
     }
   })
 }
