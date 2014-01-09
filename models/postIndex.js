@@ -2,6 +2,23 @@ var fs = require('fs');
 var async = require('async');
 var fm = require('front-matter');
 
+module.exports = function(path) {
+  // Generate an array of files recursivly.
+  walk (path, function (err, fileList) {
+    // Mix in the contents of the files with the path array
+    async.map(fileList, readContents, function (err, results) {
+      //filter out files that dont have front-matter
+      async.filter(results, fmTestCallback, function (yamlList) {
+        // Parse the front matter!
+        async.map(yamlList, fmCallback, function (err, results) {
+          //Let me at it!
+          return results;
+        });
+      });
+    });
+  });
+};
+
 function readContents (file, callback) {
   fs.readFile (file, 'utf8', function (err, data) {
     if (err) callback (err);
@@ -22,7 +39,6 @@ function fmTestCallback (object, callback) {
 // TODO Export this method in the actual fm module
 // See issue https://github.com/jxson/front-matter/issues/14
 function fmTest (string) {
-  var body = string;
   var match = matcher(string, '= yaml =') || matcher(string, '---');
 
   if (match) {
@@ -66,13 +82,3 @@ function walk (dir, done) {
     });
   });
 }
-
-walk ('../_posts', function (err, fileList) {
-  async.map(fileList, readContents, function (err, results) {
-    async.filter(results, fmTestCallback, function (yamlList) {
-      async.map(yamlList, fmCallback, function (err, results) {
-        console.log(results[0].attributesd);
-      });
-    });
-  });
-});
