@@ -2,22 +2,27 @@ var fs = require('fs');
 var async = require('async');
 var fm = require('front-matter');
 
-module.exports = function(path) {
+function buildPostIndex (path) {
   // Generate an array of files recursivly.
   walk (path, function (err, fileList) {
+    if (err) throw (err);
     // Mix in the contents of the files with the path array
     async.map(fileList, readContents, function (err, results) {
+      if (err) throw (err);
       //filter out files that dont have front-matter
       async.filter(results, fmTestCallback, function (yamlList) {
         // Parse the front matter!
         async.map(yamlList, fmCallback, function (err, results) {
+          if (err) throw (err);
           //Let me at it!
           return results;
         });
       });
     });
   });
-};
+}
+
+console.log(buildPostIndex ('/Users/bret/Documents/Git-Clones/bretzel/models/postIndex/tests/_posts'));
 
 function readContents (file, callback) {
   fs.readFile (file, 'utf8', function (err, data) {
@@ -46,6 +51,8 @@ function fmTest (string) {
   } else {
     return false;
   }
+
+// Taken from the front-matter package.
 function matcher(string, seperator){
 
   var seperator = seperator || '---'
@@ -59,7 +66,8 @@ function matcher(string, seperator){
   if (match && match.length > 0) return match
   }
 }
-// TODO Make this easier to read.  Prob with async.  Found on SE, thanks guys.
+
+// TODO Make this easier to read with async.  Found on SE, thanks guys.
 function walk (dir, done) {
   var results = [];
   fs.readdir(dir, function(err, list) {

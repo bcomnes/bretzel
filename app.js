@@ -6,6 +6,7 @@ var path = require('path');
 var replify = require('replify');
 var yaml = require('js-yaml');
 var fs = require('fs');
+var postIndex = require('./models/postIndex');
 
 // Variables
 var configPath = './configuration.yml';
@@ -15,6 +16,7 @@ var app = express();
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.set('posts', path.join(__dirname, '_posts'));
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
@@ -34,14 +36,14 @@ if ('development' == app.get('env')) {
 // production only
 app.configure('production', function(){});
 
-// Site Configuration and variables
+// Site variables
 // Accessed via app.locals
 // Used mostly with templates
 fs.readFile(configPath, 'utf8', function (err, data) {
   if (err) throw (err);
   app.locals(yaml.safeLoad(data));
 });
-app.locals.moment = require('moment');
+app.locals.moment = require('moment'); // Expose current time to templates
 
 // Routes
 app.get('/', routes.index);
@@ -51,32 +53,6 @@ app.get('/csstest', routes.csstest);
 //Start the server
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
+  console.log(app.settings.posts);
+  console.log(postIndex(app.settings.posts));
 });
-
-function walk (dir, done) {
-  var results = [];
-  fs.readdir(dir, function(err, list) {
-    if (err) return done(err);
-    var pending = list.length;
-    if (!pending) return done(null, results);
-    list.forEach(function(file) {
-      file = dir + '/' + file;
-      fs.stat(file, function(err, stat) {
-        if (stat && stat.isDirectory()) {
-          walk(file, function(err, res) {
-            results = results.concat(res);
-            if (!--pending) done(null, results);
-          });
-        } else {
-          results.push(file);
-          if (!--pending) done(null, results);
-        }
-      });
-    });
-  });
-};
-
-walk('_posts', function (err, results) {
-  if (err) throw (err);
-  console.log(results);
-})
