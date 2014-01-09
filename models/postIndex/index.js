@@ -12,10 +12,11 @@ function buildPostIndex (path) {
       //filter out files that dont have front-matter
       async.filter(results, fmTestCallback, function (yamlList) {
         // Parse the front matter!
-        async.map(yamlList, fmCallback, function (err, results) {
+        async.map(yamlList, fmCallback, function (err, postIndex) {
           if (err) throw (err);
           //Let me at it!
-          return results;
+          // Results is now an array of a bunch of stuff... but buildPostIndex() returns undefined!
+          return postIndex;
         });
       });
     });
