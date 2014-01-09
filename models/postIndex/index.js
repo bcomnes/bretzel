@@ -22,6 +22,7 @@ function buildPostIndex (path, callback) {
   });
 }
 
+// The _posts folder is just a copy of a jekyll website's _posts folder.
 buildPostIndex ('/Users/bret/Documents/Git-Clones/bretzel/models/postIndex/tests/_posts', function (err, postIndex) {
   console.log(postIndex[0]);
 });
