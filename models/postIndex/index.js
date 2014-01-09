@@ -2,7 +2,7 @@ var fs = require('fs');
 var async = require('async');
 var fm = require('front-matter');
 
-function buildPostIndex (path) {
+function buildPostIndex (path, callback) {
   // Generate an array of files recursivly.
   walk (path, function (err, fileList) {
     if (err) throw (err);
@@ -16,14 +16,16 @@ function buildPostIndex (path) {
           if (err) throw (err);
           //Let me at it!
           // Results is now an array of a bunch of stuff... but buildPostIndex() returns undefined!
-          return postIndex;
+          callback(null, postIndex);
         });
       });
     });
   });
 }
 
-console.log(buildPostIndex ('/Users/bret/Documents/Git-Clones/bretzel/models/postIndex/tests/_posts'));
+buildPostIndex ('/Users/bret/Documents/Git-Clones/bretzel/models/postIndex/tests/_posts', function (err, postIndex) {
+  console.log(postIndex[0]);
+});
 
 function readContents (file, callback) {
   fs.readFile (file, 'utf8', function (err, data) {
