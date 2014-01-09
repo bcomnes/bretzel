@@ -15,7 +15,6 @@ function buildPostIndex (path, callback) {
         async.map(yamlList, fmCallback, function (err, postIndex) {
           if (err) throw (err);
           //Let me at it!
-          // Results is now an array of a bunch of stuff... but buildPostIndex() returns undefined!
           callback(null, postIndex);
         });
       });
