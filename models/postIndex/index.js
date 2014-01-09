@@ -39,7 +39,11 @@ function fmCallback (yaml, callback) {
   callback(null, parsed);
 }
  
+
 function fmTestCallback (object, callback) {
+  // This just puts the true/false test in the correct object callback
+  // format.  object.contents is just a string that we are testing for
+  // the existence of front-matter.
   callback(fmTest(object.contents));
 }
 
