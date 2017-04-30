@@ -1,6 +1,8 @@
 bretzel
 =======
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/bcomnes/bretzel.svg)](https://greenkeeper.io/)
+
 Not exactly sure how this is going to turn out.  
 
 Starting with [http://howtonode.org/express-mongodb](http://howtonode.org/express-mongodb)
