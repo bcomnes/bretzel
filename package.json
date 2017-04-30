@@ -6,15 +6,15 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.4.7",
+    "express": "4.15.2",
     "jade": "*",
-    "js-yaml": "~3.0.1",
-    "moment": "~2.5.0",
-    "front-matter": "~0.1.5",
-    "async": "~0.2.9"
+    "js-yaml": "~3.8.3",
+    "moment": "~2.18.1",
+    "front-matter": "~2.1.2",
+    "async": "~2.4.0"
   },
   "devDependencies": {
-    "replify": "~1.1.4"
+    "replify": "~1.2.0"
   },
   "description": "bretzel =======",
   "main": "app.js",
